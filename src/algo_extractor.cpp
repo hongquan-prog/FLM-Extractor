@@ -3,7 +3,10 @@
 #include <iostream>
 #include <fstream>
 #include <algorithm>
+#include "log.h"
 #include "algo_extractor.h"
+
+#define TAG "algo_extractor"
 
 const std::vector<std::string> AlgoExtractor::_function_list = {
     "FlashDevice",
@@ -231,12 +234,13 @@ bool AlgoExtractor::extract(const std::string &path, FlashIface::program_target_
     }
     catch (std::exception &e)
     {
-        std::cout << e.what() << std::endl;
+        LOG_ERROR("%s", e.what());
 
         if (target.algo_blob)
+        {
             delete[] target.algo_blob;
-
-        target.algo_blob = nullptr;
+            target.algo_blob = nullptr;
+        }
     }
 
     if (fp)

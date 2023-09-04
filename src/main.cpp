@@ -9,7 +9,7 @@ int main()
     static FlashIface::program_target_t target = {0};
     static FlashIface::target_cfg_t cfg;
 
-    extractor.extract("./STM32H7x_2048.FLM", target, cfg);
+    extractor.extract("./STM32F7x_2048.FLM", target, cfg);
 
     for (int i = 0; i < cfg.sector_info.size(); i++)
     {
